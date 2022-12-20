@@ -2,8 +2,16 @@ import paramiko
 from scp import SCPClient
 import pandas as pd
 import matplotlib.pyplot as plt
+import subprocess
+import shlex
+import sys
+import subprocess
 
-
+def openImage(path):
+    imageViewerFromCommandLine = {'linux':'xdg-open',
+                                  'win32':'explorer',
+                                  'darwin':'open'}[sys.platform]
+    subprocess.run([imageViewerFromCommandLine, path])
 
 def createSSHClient(server, port, user, password):
     client = paramiko.SSHClient()
@@ -36,7 +44,14 @@ print(df.dtypes)
 
 df.set_index('Reading').plot()
 plt.title(title)
-plt.ylim((43,64))
-plt.xlim((0,170))
+plt.ylim((43,64)) #use this for reverse
+#plt.ylim((30,50)) #use this for forward
 
-plt.show()
+
+fname='/home/lauren/Documents/Lego/Graphs/'+ title + '.png'
+plt.savefig(fname)
+
+openImage(fname)
+
+# plt.show()
+

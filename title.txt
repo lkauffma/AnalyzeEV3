@@ -1,1 +1,1 @@
-Speed=-200 Kp=0.3 Ki=0.0 Kd=0.0
+Speed=-200 Kp=0.2 Ki=0.0 Kd=0.001
